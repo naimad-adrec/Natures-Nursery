@@ -6,12 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerResources : MonoBehaviour
 {
-    public static PlayerResources Instance { get; private set; }
-
-    public int coinCount = 0;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
+    // Coin Variables
+    [SerializeField] private int coinCount = 0;
+    public int GetCoinCount() { return coinCount; }
 }
