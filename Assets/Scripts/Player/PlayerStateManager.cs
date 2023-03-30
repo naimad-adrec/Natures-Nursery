@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerStateManager : MonoBehaviour
 {
-    // Class Variables
+    // State Variables
     PlayerBaseState CurrentState;
     public PlayerMovingState MovingState = new PlayerMovingState();
     public PlayerIdleState IdleState = new PlayerIdleState();

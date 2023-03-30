@@ -1267,7 +1267,7 @@ GameObject:
   - component: {fileID: 1580143779}
   - component: {fileID: 1580143780}
   - component: {fileID: 1580143782}
-  - component: {fileID: 1580143781}
+  - component: {fileID: 1580143783}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -1344,20 +1344,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1580143781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1580143778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aa2d8eee7852114eb7846be0df6744c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dryTile: {fileID: 2074418404, guid: c246e15f8b8daa14d9421f03636a464e, type: 3}
-  wateredTile: {fileID: 1153789549, guid: c246e15f8b8daa14d9421f03636a464e, type: 3}
 --- !u!61 &1580143782
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1384,6 +1370,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1580143783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580143778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4527c0428c4b85c48ad3eda38097f755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dryTile: {fileID: 2074418404, guid: c246e15f8b8daa14d9421f03636a464e, type: 3}
+  _wateredTile: {fileID: 1153789549, guid: c246e15f8b8daa14d9421f03636a464e, type: 3}
 --- !u!1 &1737177983
 GameObject:
   m_ObjectHideFlags: 0

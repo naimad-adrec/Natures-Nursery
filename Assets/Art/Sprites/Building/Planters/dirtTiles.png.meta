@@ -409,7 +409,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      dirtTiles_3: 489590714
+      dirtTiles_1: -215444773
       dirtTiles_13: -2125627248
       dirtTiles_4: 2020078916
       dirtTiles_10: 811103224
@@ -421,8 +421,8 @@ TextureImporter:
       dirtTiles_8: 2074418404
       dirtTiles_12: -190834228
       dirtTiles_7: 336958556
-      dirtTiles_1: -215444773
       dirtTiles_2: -433742474
+      dirtTiles_3: 489590714
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
