@@ -12,14 +12,19 @@ public class PlayerStateManager : MonoBehaviour
 
     // Game Components
     private Rigidbody2D _rigidBody;
-    public Rigidbody2D RigidBody { get { return _rigidBody;  } set { _rigidBody = value;  } }
     private BoxCollider2D _coll;
+    private Animator _animator;
+
+    // Getter and Setters
+    public Rigidbody2D RigidBody { get { return _rigidBody; } set { _rigidBody = value; } }
+    public Animator Animator { get { return _animator; } set { _animator = value; } }
 
     private void Awake()
     {
         // Call Game Components
         _rigidBody = GetComponent<Rigidbody2D>();
         _coll = GetComponent<BoxCollider2D>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Start()

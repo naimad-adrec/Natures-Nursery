@@ -16,6 +16,10 @@ public class PlanterTileStateManager : MonoBehaviour
     [SerializeField] private Sprite _wateredTile;
     public Sprite WateredTile { get; private set; }
 
+    // Plant Variables
+    private bool _isPlanted;
+    public bool IsPlanted { get { return _isPlanted; } set { _isPlanted = value; } }
+
     private void Awake()
     {
         sp = GetComponent<SpriteRenderer>();
@@ -38,4 +42,8 @@ public class PlanterTileStateManager : MonoBehaviour
         state.EnterState(this);
     }
 
+    private void OnMouseDown()
+    {
+        sp.sprite = _wateredTile;
+    }
 }

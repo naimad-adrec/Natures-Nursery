@@ -15,16 +15,18 @@ public class PlayerMovingState : PlayerBaseState
 
     public override void EnterState(PlayerStateManager player)
     {
-        GetPlayerInput();
-        Debug.Log("I moved");
+        player.Animator.SetBool("IsMoving", true);
+        GetPlayerInput(player);
+        ChangeCurrentAnimation(player);
     }
 
     public override void UpdateState(PlayerStateManager player)
     {
         if (playerInput.magnitude != 0f)
         {
-            GetPlayerInput();
+            GetPlayerInput(player);
             ApplyPlayerMovement(player);
+            ChangeCurrentAnimation(player);
         }
         else
         {
@@ -36,10 +38,10 @@ public class PlayerMovingState : PlayerBaseState
     {
 
     }
-    private void GetPlayerInput()
+    private void GetPlayerInput(PlayerStateManager player)
     {
         dirY = Input.GetAxisRaw("Vertical");
-        dirX = Input.GetAxisRaw("Horizontal");
+        dirX = Input.GetAxisRaw("Horizontal");   
         playerInput = new Vector2(dirX, dirY).normalized;
     }
 
@@ -47,5 +49,20 @@ public class PlayerMovingState : PlayerBaseState
     {
         moveDir = new Vector3(playerInput.x * moveSpeed * Time.fixedDeltaTime, playerInput.y * moveSpeed * Time.fixedDeltaTime, player.transform.position.z);
         player.RigidBody.velocity = moveDir;
+    }
+
+    private void ChangeCurrentAnimation(PlayerStateManager player)
+    {
+        player.Animator.SetFloat("X", dirX);
+        player.Animator.SetFloat("Y", dirY);
+
+        if (dirX != -1f)
+        {
+            player.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            player.transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 }
