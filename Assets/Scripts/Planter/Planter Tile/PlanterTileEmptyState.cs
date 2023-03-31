@@ -5,7 +5,7 @@ public class PlanterTileEmptyState : PlanterTileBaseState
 {
     public override void EnterState(PlanterTileStateManager tile)
     {
-        Debug.Log("Im Empty");
+        tile.Plant.SetActive(false);
         tile.IsPlanted = false;
     }
 
@@ -13,7 +13,6 @@ public class PlanterTileEmptyState : PlanterTileBaseState
     {
         if (tile.IsPlanted == false)
         {
-            CheckForInteract(tile);
         }
         else
         {
@@ -24,13 +23,5 @@ public class PlanterTileEmptyState : PlanterTileBaseState
     public override void OnCollisionEnter2D(PlanterTileStateManager player)
     {
 
-    }
-
-    private void CheckForInteract(PlanterTileStateManager tile)
-    {
-        if (Input.GetMouseButtonDown(0) == true)
-        {
-            tile.IsPlanted = true;
-        }
     }
 }

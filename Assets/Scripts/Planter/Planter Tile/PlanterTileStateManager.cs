@@ -17,12 +17,15 @@ public class PlanterTileStateManager : MonoBehaviour
     public Sprite WateredTile { get; private set; }
 
     // Plant Variables
+    private GameObject _plant;
+    public GameObject Plant { get { return _plant; } set { _plant = value; } }
     private bool _isPlanted;
     public bool IsPlanted { get { return _isPlanted; } set { _isPlanted = value; } }
 
     private void Awake()
     {
         sp = GetComponent<SpriteRenderer>();
+        _plant = transform.GetChild(0).gameObject;
     }
 
     private void Start()
