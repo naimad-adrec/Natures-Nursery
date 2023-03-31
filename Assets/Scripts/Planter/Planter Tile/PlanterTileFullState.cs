@@ -4,7 +4,7 @@ public class PlanterTileFullState : PlanterTileBaseState
 {
     public override void EnterState(PlanterTileStateManager tile)
     {
-        Debug.Log("Im Full");
+        tile.Plant.SetActive(true);
         tile.IsPlanted = true;
     }
 
