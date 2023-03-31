@@ -15,9 +15,17 @@ public class PlayerStateManager : MonoBehaviour
     private BoxCollider2D _coll;
     private Animator _animator;
 
-    // Getter and Setters
+    // Component Getter and Setters
     public Rigidbody2D RigidBody { get { return _rigidBody; } set { _rigidBody = value; } }
     public Animator Animator { get { return _animator; } set { _animator = value; } }
+
+    // Movement Variables
+    private float _lastDirX = 0f;
+    private float _lastDirY = -1f;
+
+    // Movement Getters and Setters
+    public float LastDirX { get { return _lastDirX; } set { _lastDirX = value; } }
+    public float LastDirY { get { return _lastDirY; } set { _lastDirY = value; } }
 
     private void Awake()
     {

@@ -10,8 +10,9 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void EnterState(PlayerStateManager player)
     {
-        Debug.Log("I am Idle");
+        player.Animator.SetBool("IsMoving", false);
         GetPlayerInput();
+        ChangeCurrentAnimation(player);
     }
 
     public override void UpdateState(PlayerStateManager player)
@@ -19,6 +20,7 @@ public class PlayerIdleState : PlayerBaseState
         if (playerInput.magnitude == 0f)
         {
             GetPlayerInput();
+            ChangeCurrentAnimation(player);
         }
         else
         {
@@ -36,5 +38,20 @@ public class PlayerIdleState : PlayerBaseState
         dirY = Input.GetAxisRaw("Vertical");
         dirX = Input.GetAxisRaw("Horizontal");
         playerInput = new Vector2(dirX, dirY).normalized;
+    }
+
+    private void ChangeCurrentAnimation(PlayerStateManager player)
+    {
+        player.Animator.SetFloat("X", player.LastDirX);
+        player.Animator.SetFloat("Y", player.LastDirY);
+
+        if (player.LastDirX != -1f)
+        {
+            player.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            player.transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 }

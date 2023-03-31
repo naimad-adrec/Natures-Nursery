@@ -13,10 +13,12 @@ public class PlayerMovingState : PlayerBaseState
     private float dirX;
     private float dirY;
 
+    // Getters and Setters
+
     public override void EnterState(PlayerStateManager player)
     {
         player.Animator.SetBool("IsMoving", true);
-        GetPlayerInput(player);
+        GetPlayerInput();
         ChangeCurrentAnimation(player);
     }
 
@@ -24,7 +26,9 @@ public class PlayerMovingState : PlayerBaseState
     {
         if (playerInput.magnitude != 0f)
         {
-            GetPlayerInput(player);
+            player.LastDirX = dirX;
+            player.LastDirY = dirY;
+            GetPlayerInput();
             ApplyPlayerMovement(player);
             ChangeCurrentAnimation(player);
         }
@@ -38,7 +42,7 @@ public class PlayerMovingState : PlayerBaseState
     {
 
     }
-    private void GetPlayerInput(PlayerStateManager player)
+    private void GetPlayerInput()
     {
         dirY = Input.GetAxisRaw("Vertical");
         dirX = Input.GetAxisRaw("Horizontal");   
