@@ -3,27 +3,22 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerIdleState : PlayerBaseState
 {
-    // Input Variables
-    private Vector2 playerInput;
-    private float dirX;
-    private float dirY;
-
     public override void EnterState(PlayerStateManager player)
     {
+        Debug.Log("I am Idle");
+        player.RigidBody.velocity = Vector2.zero;
         player.Animator.SetBool("IsMoving", false);
-        GetPlayerMovementInput();
         ChangeCurrentAnimation(player);
     }
 
     public override void UpdateState(PlayerStateManager player)
     {
-        if (playerInput.magnitude == 0f && player.IsInteracting == false)
+        if (player.PlayerInput.magnitude == 0f && player.IsInteracting == false)
         {
-            GetPlayerMovementInput();
             GetPlayerItemChangeInput(player);
             ChangeCurrentAnimation(player);
         }
-        else if (playerInput.magnitude != 0f && player.IsInteracting == false)
+        else if (player.PlayerInput.magnitude != 0f && player.IsInteracting == false)
         {
             player.SwitchState(player.MovingState);
         }
@@ -53,13 +48,6 @@ public class PlayerIdleState : PlayerBaseState
                 player.CurrentItemIdx++;
             }
         }
-    }
-
-    private void GetPlayerMovementInput()
-    {
-        dirY = Input.GetAxisRaw("Vertical");
-        dirX = Input.GetAxisRaw("Horizontal");
-        playerInput = new Vector2(dirX, dirY).normalized;
     }
 
     private void ChangeCurrentAnimation(PlayerStateManager player)
