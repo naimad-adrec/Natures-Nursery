@@ -18,7 +18,7 @@ public class Interactable : MonoBehaviour
             {
                 isInteractedWith.Invoke();
                 
-                if(PlayerStateManager.Instance.CurrentItem == "Watering Can")
+                if (PlayerStateManager.Instance.CurrentItem == "Watering Can")
                 {
                     waterTile.Invoke();
                 }
