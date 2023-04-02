@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2916ba5ecf1b6ce4d89741cbbde30daa, type: 3}
   m_Name: Desert Museum Palo Verde
   m_EditorClassIdentifier: 
-  plantName: Desert Museum Palo Verde
-  plantSprite: {fileID: 21300000, guid: a8c8ecbc6c3a3434bb2ecde22bebe65c, type: 3}
+  _plantName: aSSHOL
+  _plantStageOneSprite: {fileID: 2089912433, guid: 63c78900d9b907b438c2c3c640e6b246, type: 3}
+  _plantStageTwoSprite: {fileID: 1544250906, guid: f26d3758a59096645a091d09acaa241a, type: 3}
+  _plantStageThreeSprite: {fileID: 0}
+  _plantStageFourSprite: {fileID: 0}
+  _plantStageFiveSprite: {fileID: 0}
+  _plantMatureSprite: {fileID: 0}

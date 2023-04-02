@@ -9,6 +9,7 @@ public class PlantGrowingState : PlantBaseState
 
     public override void EnterState()
     {
+        Ctx.SpriteRenderer.sprite = Ctx.GrowthStageOne;
         Ctx.IsMature = false;
         Ctx.IsDead = false;
         Debug.Log("I am growing");
@@ -16,7 +17,7 @@ public class PlantGrowingState : PlantBaseState
 
     public override void UpdateState()
     {
-        Debug.Log("I am growing");
+        //Debug.Log("I am growing");
         CheckSwitchStates();
     }
 

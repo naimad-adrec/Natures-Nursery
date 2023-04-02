@@ -11,16 +11,21 @@ public class PlanterTileStateManager : MonoBehaviour
 
     // Sprite Variables
     private SpriteRenderer sp;
-    [SerializeField] private Sprite _dryTile;
-    public Sprite DryTile { get; private set; }
-    [SerializeField] private Sprite _wateredTile;
-    public Sprite WateredTile { get; private set; }
+    [SerializeField] private Sprite dryTile;
+    [SerializeField] private Sprite wateredTile;
 
     // Plant Variables
     private GameObject _plant;
-    public GameObject Plant { get { return _plant; } set { _plant = value; } }
     private bool _isPlanted;
+
+    // Watered Variables
+    private bool _isWatered = false;
+
+    // Getters and Setters
+    public GameObject Plant { get { return _plant; } set { _plant = value; } }
     public bool IsPlanted { get { return _isPlanted; } set { _isPlanted = value; } }
+    public bool IsWatered { get { return _isWatered; } set { _isWatered = value; } }
+
 
     private void Awake()
     {
@@ -34,19 +39,27 @@ public class PlanterTileStateManager : MonoBehaviour
         CurrentState.EnterState(this);
     }
 
-    // Update is called once per frame
     private void Update()
     {
         CurrentState.UpdateState(this);
+        CheckIfTileIsWatered();
     }
+
     public void SwitchState(PlanterTileBaseState state)
     {
         CurrentState = state;
         state.EnterState(this);
     }
 
-    private void OnMouseDown()
+    private void CheckIfTileIsWatered()
     {
-        sp.sprite = _wateredTile;
+        if (_isWatered == false)
+        {
+            sp.sprite = dryTile;
+        }
+        else
+        {
+            sp.sprite = wateredTile;
+        }
     }
 }

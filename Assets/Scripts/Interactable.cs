@@ -8,6 +8,7 @@ public class Interactable : MonoBehaviour
     private bool isInRange;
     [SerializeField] private KeyCode interactKey;
     [SerializeField] private UnityEvent isInteractedWith;
+    [SerializeField] private UnityEvent waterTile;
 
     private void Update()
     {
@@ -16,6 +17,11 @@ public class Interactable : MonoBehaviour
             if (Input.GetKeyDown(interactKey))
             {
                 isInteractedWith.Invoke();
+                
+                if(PlayerStateManager.Instance.CurrentItem == "Watering Can")
+                {
+                    waterTile.Invoke();
+                }
             }
         }
     }

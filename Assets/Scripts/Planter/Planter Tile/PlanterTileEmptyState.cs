@@ -13,6 +13,7 @@ public class PlanterTileEmptyState : PlanterTileBaseState
     {
         if (tile.IsPlanted == false)
         {
+
         }
         else
         {

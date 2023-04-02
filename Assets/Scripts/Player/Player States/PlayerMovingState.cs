@@ -13,28 +13,31 @@ public class PlayerMovingState : PlayerBaseState
     private float dirX;
     private float dirY;
 
-    // Getters and Setters
-
     public override void EnterState(PlayerStateManager player)
     {
         player.Animator.SetBool("IsMoving", true);
-        GetPlayerInput();
+        GetPlayerMovementInput();
         ChangeCurrentAnimation(player);
     }
 
     public override void UpdateState(PlayerStateManager player)
     {
-        if (playerInput.magnitude != 0f)
+        if (playerInput.magnitude != 0f && player.IsInteracting == false)
         {
             player.LastDirX = dirX;
             player.LastDirY = dirY;
-            GetPlayerInput();
+            GetPlayerMovementInput();
+            GetPlayerItemChangeInput(player);
             ApplyPlayerMovement(player);
             ChangeCurrentAnimation(player);
         }
-        else
+        else if (playerInput.magnitude == 0f && player.IsInteracting == false)
         {
             player.SwitchState(player.IdleState);
+        }
+        else
+        {
+            player.SwitchState(player.InteractingState);
         }
     }
 
@@ -42,7 +45,24 @@ public class PlayerMovingState : PlayerBaseState
     {
 
     }
-    private void GetPlayerInput()
+
+    private void GetPlayerItemChangeInput(PlayerStateManager player)
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            player.CurrentItem = player.CurrentItems[player.CurrentItemIdx + 1];
+            if (player.CurrentItemIdx == player.CurrentItems.Count - 1)
+            {
+                player.CurrentItemIdx = 0;
+            }
+            else
+            {
+                player.CurrentItemIdx++;
+            }
+        }
+    }
+
+    private void GetPlayerMovementInput()
     {
         dirY = Input.GetAxisRaw("Vertical");
         dirX = Input.GetAxisRaw("Horizontal");   
