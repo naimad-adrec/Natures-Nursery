@@ -7,18 +7,15 @@ public class Interactable : MonoBehaviour
 {
     private bool isInRange;
     [SerializeField] private KeyCode interactKey;
-    [SerializeField] private UnityEvent isInteractedWith;
     [SerializeField] private UnityEvent waterTile;
 
     private void Update()
     {
         if (isInRange)
         {
-            if (Input.GetKeyDown(interactKey))
+            if (PlayerStateManager.Instance.IsInteracting == true)
             {
-                isInteractedWith.Invoke();
-                
-                if (PlayerStateManager.Instance.CurrentItem == "Watering Can")
+                if (PlayerStateManager.Instance.CurrentItem == "Watering Can" && PlayerStateManager.Instance.WaterPercentage > 0f)
                 {
                     waterTile.Invoke();
                 }

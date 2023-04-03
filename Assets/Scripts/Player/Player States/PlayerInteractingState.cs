@@ -7,6 +7,7 @@ public class PlayerInteractingState : PlayerBaseState
 
     public override void EnterState(PlayerStateManager player)
     {
+        Debug.Log("I am Interacting");
         player.Animator.SetBool("IsMoving", false);
         ChangeCurrentAnimation(player);
         ChangeCurrentItemFillRate(player);

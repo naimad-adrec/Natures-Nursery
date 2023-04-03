@@ -19,7 +19,6 @@ public class PlayerMovingState : PlayerBaseState
     {
         if (player.PlayerInput.magnitude != 0f && player.IsInteracting == false)
         {
-            GetPlayerItemChangeInput(player);
             ApplyPlayerMovement(player);
             ChangeCurrentAnimation(player);
         }
@@ -36,23 +35,6 @@ public class PlayerMovingState : PlayerBaseState
     public override void OnCollisionEnter2D(PlayerStateManager player)
     {
 
-    }
-
-    private void GetPlayerItemChangeInput(PlayerStateManager player)
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (player.CurrentItemIdx == player.CurrentItems.Count - 1)
-            {
-                player.CurrentItemIdx = 0;
-                player.CurrentItem = player.CurrentItems[player.CurrentItemIdx];
-            }
-            else
-            {
-                player.CurrentItem = player.CurrentItems[player.CurrentItemIdx + 1];
-                player.CurrentItemIdx++;
-            }
-        }
     }
 
     private void ApplyPlayerMovement(PlayerStateManager player)

@@ -46,6 +46,7 @@ public class PlayerStateManager : MonoBehaviour
     private int _currentItemIdx;
     private bool _isInteracting = false;
     private float _waterPercentage = 100f;
+    private bool _isItemMenuClosed = false;
 
     // Interact Getters and Setters
     public bool IsInteracting { get { return _isInteracting; } set { _isInteracting = value; } }
@@ -53,6 +54,7 @@ public class PlayerStateManager : MonoBehaviour
     public int CurrentItemIdx { get { return _currentItemIdx; } set { _currentItemIdx = value; } }
     public List<string> CurrentItems { get { return _currentItems; } set { _currentItems = value; } }
     public float WaterPercentage { get { return _waterPercentage; } set { _waterPercentage = value; } }
+    public bool IsItemMenuClosed { get { return _isItemMenuClosed; } set { _isItemMenuClosed = value; } }
 
     private void Awake()
     {
@@ -69,6 +71,8 @@ public class PlayerStateManager : MonoBehaviour
         customInput.Player.Enable();
         customInput.Player.Movement.performed += OnMove;
         customInput.Player.Movement.canceled += OnMoveStop;
+        customInput.Player.Interact.performed += OnInteract;
+        customInput.Player.SwitchItems.performed += OnSwitchItem;
 
         // Set Current Items
         _currentItems.Add(_possibleItems[0]);
@@ -96,6 +100,54 @@ public class PlayerStateManager : MonoBehaviour
         state.EnterState(this);
     }
 
+    private void OnInteract(InputAction.CallbackContext context)
+    {
+        // Stop movement and set correct animation direction
+        if(CurrentState == IdleState)
+        {
+            _isInteracting = true;
+        }
+        else
+        {
+            _lastDirX = _dirX;
+            _lastDirY = _dirY;
+            _rigidBody.velocity = Vector2.zero;
+            _isInteracting = true;
+        }
+    }
+
+    private void OnSwitchItem(InputAction.CallbackContext context)
+    {
+        if (context.ReadValue<float>() == 1)
+        {
+            // Switch item in a positive direction
+            if (_currentItemIdx == _currentItems.Count - 1)
+            {
+                _currentItemIdx = 0;
+                _currentItem = _currentItems[_currentItemIdx];
+            }
+            else
+            {
+                _currentItem = _currentItems[_currentItemIdx + 1];
+                _currentItemIdx++;
+            }
+        }
+        else
+        {
+            // Switch item in a negative direction
+            if (_currentItemIdx == 0)
+            {
+                _currentItemIdx = _currentItems.Count - 1;
+                _currentItem = _currentItems[_currentItemIdx];
+            }
+            else
+            {
+                _currentItem = _currentItems[_currentItemIdx - 1];
+                _currentItemIdx--;
+            }
+        }
+    }
+
     private void OnMove(InputAction.CallbackContext context)
     {
         _playerInput = context.ReadValue<Vector2>();
@@ -108,10 +160,13 @@ public class PlayerStateManager : MonoBehaviour
     {
         _lastDirX = _dirX;
         _lastDirY = _dirY;
-        Debug.Log(_lastDirY);
-        Debug.Log(_lastDirX);
         _playerInput = Vector2.zero;
         _dirX = 0;
         _dirY = 0;
+    }
+
+    public void CloseUIMenu()
+    {
+        _animator.SetBool("IsItemMenuClosed", true);
     }
 }
