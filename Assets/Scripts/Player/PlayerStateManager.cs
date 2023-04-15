@@ -5,6 +5,7 @@ using System.Runtime.ConstrainedExecution;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class PlayerStateManager : MonoBehaviour
 {
@@ -56,6 +57,15 @@ public class PlayerStateManager : MonoBehaviour
     public float WaterPercentage { get { return _waterPercentage; } set { _waterPercentage = value; } }
     public bool IsItemMenuClosed { get { return _isItemMenuClosed; } set { _isItemMenuClosed = value; } }
 
+    // Resource Getters and Setters
+
+    // Event Variables
+    [SerializeField] private UnityEvent _openSeedBag;
+    [SerializeField] private UnityEvent closeSeedBag;
+
+    // Event Getters and Setters
+    public UnityEvent OpenSeedBag { get { return _openSeedBag; } private set { } }
+
     private void Awake()
     {
         // Call Instance
@@ -105,14 +115,20 @@ public class PlayerStateManager : MonoBehaviour
         // Stop movement and set correct animation direction
         if(CurrentState == IdleState)
         {
+            _animator.SetBool("IsItemMenuClosed", false);
             _isInteracting = true;
         }
-        else
+        else if(CurrentState == MovingState)
         {
+            _animator.SetBool("IsItemMenuClosed", false);
             _lastDirX = _dirX;
             _lastDirY = _dirY;
             _rigidBody.velocity = Vector2.zero;
             _isInteracting = true;
+        }
+        else
+        {
+            CloseUIMenu();
         }
     }
 
@@ -167,6 +183,9 @@ public class PlayerStateManager : MonoBehaviour
 
     public void CloseUIMenu()
     {
+        _isInteracting = false;
+        closeSeedBag.Invoke();
         _animator.SetBool("IsItemMenuClosed", true);
+        _animator.SetBool("IsInteracting", false);
     }
 }

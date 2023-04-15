@@ -1,30 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SeedBagUIManager : MonoBehaviour
 {
-    [SerializeField] private Canvas seedBagUI; 
+    [SerializeField] private Canvas seedBagUI;
 
     private void Awake()
     {
         seedBagUI.enabled = false;
     }
 
-    private void Update()
+    public void OpenSeedBag()
     {
-        CheckIfSeedBagInUse();
+        StartCoroutine(WaitForSeedBagAnimation());
     }
 
-    private void CheckIfSeedBagInUse()
+    public void CloseSeedBag()
     {
-        if (PlayerStateManager.Instance.IsInteracting == true && PlayerStateManager.Instance.CurrentItem == "Seed Bag")
-        {
-            seedBagUI.enabled = true;
-        }
-        else
-        {
-            seedBagUI.enabled = false;
-        }
+        seedBagUI.enabled = false;
+    }
+
+    private IEnumerator WaitForSeedBagAnimation()
+    {
+        yield return new WaitForSeconds(1);
+        seedBagUI.enabled = true;
     }
 }

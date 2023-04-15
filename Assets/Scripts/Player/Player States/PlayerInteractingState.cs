@@ -16,10 +16,13 @@ public class PlayerInteractingState : PlayerBaseState
         if (player.CurrentItem == "Watering Can")
         {
             animationTime = 1f;
+
+            // Start coroutine to wait for animation to finish
+            player.StartCoroutine(WaitForInteractAnimation(player, animationTime));
         }
         else if (player.CurrentItem == "Seed Bag")
         {
-            animationTime = 2f;
+            player.OpenSeedBag.Invoke();
         }
         else if (player.CurrentItem == "Soil Bag")
         {
@@ -33,16 +36,24 @@ public class PlayerInteractingState : PlayerBaseState
         {
             animationTime = 5f;
         }
-
-        // Start coroutine to wait for animation to finish
-        player.StartCoroutine(WaitForInteractAnimation(player, animationTime));
     }
 
     public override void UpdateState(PlayerStateManager player)
     {
         if (player.IsInteracting == true)
         {
+            if (player.CurrentItem == "Seed Bag")
+            {
 
+            }
+            else if (player.CurrentItem == "Soil Bag")
+            {
+
+            }
+            else if (player.CurrentItem == "Magnifying Glass")
+            {
+
+            }
         }
         else
         {
