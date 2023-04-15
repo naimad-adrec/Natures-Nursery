@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Shop Base
+    uniqueID: 4212679069
+    locked: 0
+  - name: Shop
+    uniqueID: 2949831949
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
