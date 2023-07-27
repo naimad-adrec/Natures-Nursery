@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2916ba5ecf1b6ce4d89741cbbde30daa, type: 3}
+  m_Name: Desert Museum Palo Verde
+  m_EditorClassIdentifier: 
+  _plantName: aSSHOL
+  _plantStageOneSprite: {fileID: 2089912433, guid: 63c78900d9b907b438c2c3c640e6b246, type: 3}
+  _plantStageTwoSprite: {fileID: 1544250906, guid: f26d3758a59096645a091d09acaa241a, type: 3}
+  _plantStageThreeSprite: {fileID: 0}
+  _plantStageFourSprite: {fileID: 0}
+  _plantStageFiveSprite: {fileID: 0}
+  _plantMatureSprite: {fileID: 0}
